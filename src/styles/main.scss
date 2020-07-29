@@ -1,0 +1,421 @@
+@import "helpers/variables";
+@import "helpers/mixins";
+@import "helpers/functions";
+@import "vendor/libs";
+@import "base/fonts";
+@import "base/general";
+@import "../blocks/modules";
+
+.tableUI {
+  padding: 32px 0 100px;
+  font: 14px 'Source Sans Pro';
+  background: #FBFBFB;
+
+  ul {
+    box-sizing: border-box;
+  }
+}
+
+.tableUI__content {
+  max-width: 1140px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.tableUI__title {
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 40px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid #EDEDED;
+  margin-bottom: 16px;
+}
+
+.tableUI__controls {
+  display: flex;
+}
+
+.tableUI__sorting {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 538px;
+  width: 100%;
+  white-space: nowrap;
+}
+
+.tableUI__sortingLabel {
+  font-weight: 600;
+  line-height: 24px;
+  //margin-right: 16px;
+}
+
+.tableUI__button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: all $transit-normal ease;
+
+  &:focus {
+    outline: inherit;
+  }
+
+  &.isActive {
+    background: #00A11E;
+    height: 32px;
+    color: white;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+  }
+
+  &--border {
+    border: 1px solid #C6CBD4;
+    border-radius: 2px;
+  }
+
+  &--delete {
+    width: 70px;
+    height: 32px;
+    margin-right: 12px;
+
+    &.notEmpty {
+      background: $green;
+      border: $green;
+      color: #fff;
+    }
+  }
+
+  &--arrow {
+    width: 32px;
+    height: 32px;
+    line-height: 0;
+
+    img {
+      //display: block;
+      //margin: 0 auto;
+
+      &.left {
+        transform: rotateZ(180deg);
+      }
+    }
+  }
+
+  &--selector {
+    width: 158px;
+    height: 32px;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    position: relative;
+    padding-right: 15px;
+
+    &:after {
+      content: url("../img/svg/arrow.svg");
+      display: block;
+      position: absolute;
+      top: 7px;
+      left: 138px;
+      transform: rotateZ(90deg);
+    }
+  }
+}
+
+.tableUI__navigations {
+  display: flex;
+  align-items: center;
+  //margin-left: 84px;
+  flex-basis: 100%;
+  justify-content: flex-end;
+}
+
+.tableUI__selectPerPageBox {
+  position: relative;
+
+  &:after {
+    content: url("../img/svg/arrow.svg");
+    display: block;
+    position: absolute;
+    top: 7px;
+    left: 90px;
+    transform: rotateZ(90deg);
+  }
+}
+
+.tableUI__selectPerPage {
+  width: 109px;
+  height: 32px;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+  margin-right: 16px;
+  border: 1px solid #D5DAE0;
+  padding-left: 9px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  color: #5B5E77;
+  //background: url("../img/svg/arrow.svg") no-repeat right;
+}
+
+.tableUI__pagination {
+
+}
+
+.tableUI__paginationText {
+  margin-right: 8px;
+  margin-left: 8px;
+  font-weight: 600;
+}
+
+.tableUI__select {
+  margin-left: 16px;
+  position: relative;
+}
+
+.tableUI__optionList {
+  list-style: none;
+  position: absolute;
+  top: 45px;
+  left: 0;
+  width: 207px;
+  height: 243px;
+  background: #FFFFFF;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.16);
+  border-radius: 4px;
+  padding-top: 22px;
+  padding-left: 17px;
+  overflow: auto;
+
+  li {
+    margin-bottom: 18px;
+  }
+
+  .tableUI__itemLabel {
+    padding-left: 27px;
+
+    &:before {
+      left: 0;
+      top: 2px;
+    }
+  }
+}
+
+.tableUI__table {
+  background: #fff;
+  width: 100%;
+  margin-top: 16px;
+  border-collapse: collapse;
+  font-weight: 400;
+
+  th, td {
+
+    &:nth-child(3) {
+      padding-left: 80px;
+      width: 210px;
+    }
+
+    &:nth-child(4),
+    &:nth-child(5),
+    &:nth-child(6),
+    &:nth-child(7)
+    {
+      width: 145px;
+    }
+  }
+}
+
+.tableUI__tableHeader {
+
+  tr {
+    height: 56px;
+    border-bottom: 1px solid #EDEDED;
+    text-align: left;
+  }
+
+  .tableUI__itemLabel {
+
+    &:before {
+      cursor: pointer;
+    }
+  }
+
+  th {
+    font-weight: 600;
+
+    &:nth-child(3) {
+      color: $green;
+      cursor: pointer;
+
+      &:after {
+        content: url("../img/svg/sort_arrow.svg");
+        position: relative;
+        display: inline-block;
+        top: 2px;
+        left: 2px;
+      }
+    }
+  }
+
+  .reverted {
+
+    &:nth-child(3) {
+
+      &:after {
+        transform: rotateZ(180deg);
+      }
+    }
+  }
+}
+
+.tableUI__tableBody {
+
+  tr {
+    height: 49px;
+    cursor: pointer;
+
+
+    &:nth-child(2n) {
+      background: #F8F9FA;
+    }
+
+    &:hover {
+      background: rgba(0, 161, 30, 0.07);
+
+      td {
+
+        &:nth-child(3) {
+          font-weight: bold;
+        }
+      }
+
+      .tableUI__itemDelete {
+        display: block;
+      }
+    }
+  }
+
+  .tableUI__itemLabel {
+
+    &:before {
+      top: 18px;
+      left: 37px;
+      cursor: pointer;
+    }
+  }
+
+  td {
+    position: relative;
+  }
+
+  td.bold {
+
+    &:nth-child(3) {
+      font-weight: 600;
+    }
+  }
+}
+
+.tableUI__itemDelete {
+  display: none;
+  position: absolute;
+  top: 12px;
+  left: -90px;
+  min-width: 60px;
+
+  img {
+    margin-right: 3px;
+  }
+
+  img, span {
+    vertical-align: middle;
+  }
+
+  &:hover {
+    font-weight: bold;
+  }
+}
+
+.tableUI__itemCheckbox {
+  display: none;
+
+  &:checked + .tableUI__itemLabel {
+
+    &:before {
+      background: url("../img/svg/check.svg") no-repeat center #00A11E;
+      border-color: #00A11E;
+      background-size: 9px 7px;
+    }
+  }
+}
+
+.tableUI__itemLabel {
+  position: relative;
+
+  &:before {
+    content: '';
+    display: block;
+    width: 12px;
+    height: 12px;
+    border: 1px solid #C6CBD4;
+    -webkit-border-radius: 1px;
+    -moz-border-radius: 1px;
+    border-radius: 1px;
+    position: absolute;
+    top: 22px;
+    left: 37px;
+  }
+}
+
+.tableUI__confirmPopup {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 254px;
+  height: 96px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.16);
+  border-radius: 4px;
+  background: $white;
+  padding: 16px;
+  box-sizing: border-box;
+}
+
+.tableUI__confirmWindow {
+
+}
+
+.tableUI__confirmText {
+  margin-top: 0;
+  margin-bottom: 8px;
+  line-height: 24px;
+}
+
+.tableUI__confirmButtons {
+  text-align: center;
+}
+
+.tableUI__confirmButton {
+  height: 32px;
+  width: 78px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all $transit-normal;
+
+  &--white {
+    background: $white;
+    color: #5B5E77;
+    border: 1px solid #C6CBD4;
+    margin-right: 16px;
+  }
+
+  &--green {
+    background: $green;
+    border: none;
+    color: $white;
+  }
+
+  &:hover {
+    background: grey;
+    color: $white;
+  }
+}
